@@ -1,0 +1,21 @@
+{
+    "compilerOptions": {
+        "baseUrl": "src",
+        "paths": {
+            "@telegram/*":   [ "telegram/*"             ],
+            "@service/*":    [ "service/*"              ],
+            "@server/*":     [ "server/*"               ],
+            "@model/*":      [ "db/model/*"             ],
+            "@controller/*": [ "db/controller/*"        ],
+            "@commands/*":   [ "telegram/commands/*"    ],
+            "@ambient/*":    [ "ambient_declarations/*" ]
+        },
+        "module": "commonjs",
+        "target": "esnext",
+        "outDir": "build",
+        "rootDir": "src",
+        "noImplicitAny": true,
+        "esModuleInterop": true
+    },
+    "compileOnSave": true
+}
