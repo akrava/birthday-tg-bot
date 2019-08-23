@@ -17,3 +17,8 @@ export async function FindBirthdayForToday() {
     return Birthday.find().then((res) => res.filter((val) => isBirthdayTody(val.birthday)))
         .catch((e) => error(e));
 }
+
+export async function DeleteBirthdayById(tgID: IBirthday["ownerTelegramID"]) {
+    return Birthday.deleteMany({ ownerTelegramID: tgID }).then((res) => res.ok === 1)
+        .catch((e) => error(e));
+}
