@@ -12,6 +12,12 @@ const setBday: Middleware<ContextMessageUpdate> = async function(ctx) {
         ctx.reply("error ocurred");
         return;
     }
+    if (lines.length <= 1) {
+        ctx.reply("bad syntax");
+        return;
+    }
+    lines.splice(0, 1);
+    const bdays = [];
     for (const line of lines) {
         const data = line.split(/(\s+)/);
         if (data.length !== 2) {
@@ -29,7 +35,11 @@ const setBday: Middleware<ContextMessageUpdate> = async function(ctx) {
         if (!(await CreateBirthday({ birthday, name, tgID: ctx.chat.id }))) {
             ctx.reply("error ocurred");
         }
+        bdays.push({ name, birthday });
     }
+    let message = "";
+    bdays.forEach((x) => message += `${x.name} ${x.birthday.toDateString()}\n`);
+    ctx.reply(message);
     ctx.reply("successfully");
 };
 

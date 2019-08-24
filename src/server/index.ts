@@ -24,7 +24,7 @@ app.get(process.env.CRON_PATH, async (_req, res) => {
             continue;
         }
         user.chatsId.forEach((chatId) => {
-            bot.context.telegram.sendMessage(chatId, greetings(bday.name, howManyYears(bday.birthday)));
+            bot.telegram.sendMessage(chatId, greetings(bday.name, howManyYears(bday.birthday)));
         });
     }
     info("cron executed");

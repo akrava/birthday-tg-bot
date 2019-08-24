@@ -17,11 +17,13 @@ export async function FindUserById(tgId: IUser["telegramID"]) {
         .then((data: IUser) => data || false).catch((e: Error) => error(e));
 }
 
+export async function SetChatsId(tgId: IUser["telegramID"], chatsID: IUser["chatsId"]) {
+    return User.findOneAndUpdate({ telegramID: tgId }, { $set: { chatsID } })
+        .then(() => true).catch((e) => (error(e), false));
+}
+
 export async function DeleteUser(tgId: IUser["telegramID"]) {
     return Birthday.deleteMany({ ownerTelegramID: tgId })
         .then((res) => res.ok === 1 && User.deleteOne({ telegramID: tgId }))
-        .then((res) => res.ok === 1).catch((e: Error) => {
-            error(e);
-            return false;
-        });
+        .then((res) => res.ok === 1).catch((e) => (error(e), false));
 }

@@ -16,7 +16,6 @@ const start: Middleware<ContextMessageUpdate> = async function(ctx) {
         } else {
             ctx.reply("You are registered");
         }
-        ctx.reply("Temporary unavaliable");
     } else {
         ctx.reply("To start using this service you should send command start in private chat");
     }
