@@ -13,7 +13,7 @@ const setBday: Middleware<ContextMessageUpdate> = async function(ctx) {
         return;
     }
     if (lines.length <= 1) {
-        ctx.reply("bad syntax");
+        ctx.reply("Enter more then one line");
         return;
     }
     lines.splice(0, 1);
@@ -21,7 +21,7 @@ const setBday: Middleware<ContextMessageUpdate> = async function(ctx) {
     for (const line of lines) {
         const data = line.split(/(\s+)/);
         if (data.length !== 2) {
-            ctx.reply("bad syntax");
+            ctx.reply("two params expected");
             continue;
         }
         const name = data[0];
@@ -29,7 +29,7 @@ const setBday: Middleware<ContextMessageUpdate> = async function(ctx) {
         try {
             birthday = new Date(data[1]);
         } catch (e) {
-            ctx.reply("bad syntax");
+            ctx.reply("bad syntax of date");
             continue;
         }
         if (!(await CreateBirthday({ birthday, name, tgID: ctx.chat.id }))) {
