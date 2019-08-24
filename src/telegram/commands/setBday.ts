@@ -1,6 +1,7 @@
 import { CreateBirthday, DeleteBirthdayById } from "@controller/birthday";
 import { ContextMessageUpdate, Middleware } from "telegraf";
 import { checkUser } from "@telegram/common";
+import { toFormatedString } from "@service/date";
 
 const setBday: Middleware<ContextMessageUpdate> = async function(ctx) {
     const user = await checkUser(ctx);
@@ -38,7 +39,7 @@ const setBday: Middleware<ContextMessageUpdate> = async function(ctx) {
         bdays.push({ name, birthday });
     }
     let message = "";
-    bdays.forEach((x) => message += `${x.name} ${x.birthday.toDateString()}\n`);
+    bdays.forEach((x) => message += `${x.name} ${toFormatedString(x.birthday)}\n`);
     ctx.reply(message);
     ctx.reply("successfully");
 };
