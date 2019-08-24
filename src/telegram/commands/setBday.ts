@@ -7,7 +7,7 @@ const setBday: Middleware<ContextMessageUpdate> = async function(ctx) {
     if (user === false) {
         return;
     }
-    const lines = ctx.message.text.split("\n");
+    const lines = ctx.message.text.split(/[\r\n]+/);
     if ((await DeleteBirthdayById(ctx.chat.id)) !== true) {
         ctx.reply("error ocurred");
         return;
