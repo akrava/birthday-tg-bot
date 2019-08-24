@@ -9,13 +9,13 @@ const setChatsId: Middleware<ContextMessageUpdate> = async function(ctx) {
     if (user === false) {
         return;
     }
-    const lines = ctx.message.text.split("\n");
+    const lines = ctx.message.text.split(/[\r\n]+/);
     if (lines.length !== 2) {
         ctx.reply("bad syntax");
         return;
     }
     lines.splice(0, 1);
-    const data = lines[0].split(/(\s+)/);
+    const data = lines[0].match(/\S+/g) || [];
     let chatsId;
     try {
         chatsId = data.map(Number);

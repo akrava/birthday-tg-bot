@@ -19,7 +19,7 @@ const setBday: Middleware<ContextMessageUpdate> = async function(ctx) {
     lines.splice(0, 1);
     const bdays = [];
     for (const line of lines) {
-        const data = line.split(/(\s+)/);
+        const data = line.match(/\S+/g) || [];
         if (data.length !== 2) {
             ctx.reply("two params expected");
             continue;
