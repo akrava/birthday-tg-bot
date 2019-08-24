@@ -9,7 +9,7 @@ export interface IBirthday extends Document {
 
 const BirthdaySchema: Schema = new Schema({
     ownerTelegramID: { type: Number, required: true },
-    name:            { type: Number, required: true },
+    name:            { type: String, required: true },
     birthday:        { type: Date,   required: true }
 });
 

@@ -11,7 +11,7 @@ const setChatsId: Middleware<ContextMessageUpdate> = async function(ctx) {
     }
     const lines = ctx.message.text.split(/[\r\n]+/);
     if (lines.length !== 2) {
-        ctx.reply("bad syntax");
+        ctx.reply("expected two lines");
         return;
     }
     lines.splice(0, 1);
@@ -21,7 +21,7 @@ const setChatsId: Middleware<ContextMessageUpdate> = async function(ctx) {
         chatsId = data.map(Number);
     } catch (e) {
         error(e);
-        ctx.reply("bad syntax");
+        ctx.reply("not a number");
         return;
     }
     const botID = (await bot.telegram.getMe()).id;

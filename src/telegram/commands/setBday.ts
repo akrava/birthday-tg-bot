@@ -8,8 +8,8 @@ const setBday: Middleware<ContextMessageUpdate> = async function(ctx) {
         return;
     }
     const lines = ctx.message.text.split(/[\r\n]+/);
-    if ((await DeleteBirthdayById(ctx.chat.id)) !== true) {
-        ctx.reply("error ocurred");
+    if ((await DeleteBirthdayById(user.telegramID)) !== true) {
+        ctx.reply("error ocurred while deleting");
         return;
     }
     if (lines.length <= 1) {
@@ -33,7 +33,7 @@ const setBday: Middleware<ContextMessageUpdate> = async function(ctx) {
             continue;
         }
         if (!(await CreateBirthday({ birthday, name, tgID: ctx.chat.id }))) {
-            ctx.reply("error ocurred");
+            ctx.reply("error ocurred while creating");
         }
         bdays.push({ name, birthday });
     }
