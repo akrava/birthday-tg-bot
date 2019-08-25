@@ -2,6 +2,7 @@ import { CreateBirthday, DeleteBirthdayById } from "@controller/birthday";
 import { ContextMessageUpdate, Middleware } from "telegraf";
 import { checkUser } from "@telegram/common";
 import { toFormatedString } from "@service/date";
+import moment from "moment";
 
 const setBday: Middleware<ContextMessageUpdate> = async function(ctx) {
     const user = await checkUser(ctx);
@@ -26,13 +27,12 @@ const setBday: Middleware<ContextMessageUpdate> = async function(ctx) {
             continue;
         }
         const name = data[0];
-        let birthday;
-        try {
-            birthday = new Date(data[1]);
-        } catch (e) {
+        const date = moment(data[1]);
+        if (!date.isValid()) {
             ctx.reply("bad syntax of date");
             continue;
         }
+        const birthday = date.toDate();
         if (!(await CreateBirthday({ birthday, name, tgID: ctx.chat.id }))) {
             ctx.reply("error ocurred while creating");
         }
