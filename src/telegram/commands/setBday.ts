@@ -28,7 +28,7 @@ const setBday: Middleware<ContextMessageUpdate> = async function(ctx) {
         }
         const name = data[0];
         moment.locale("uk");
-        const date = moment(data[1]);
+        const date = moment(data[1], "DD.MM.YY");
         if (!date.isValid()) {
             ctx.reply("bad syntax of date");
             continue;
