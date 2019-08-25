@@ -42,7 +42,6 @@ const setBday: Middleware<ContextMessageUpdate> = async function(ctx) {
     let message = "";
     bdays.forEach((x) => message += `${x.name} ${toFormatedString(x.birthday)}\n`);
     ctx.reply(message);
-    ctx.reply("successfully");
 };
 
 export default setBday;

@@ -19,6 +19,9 @@ const setChatsId: Middleware<ContextMessageUpdate> = async function(ctx) {
     let chatsId;
     try {
         chatsId = data.map(Number);
+        if (!chatsId.every((x) => Number.isInteger(x))) {
+            throw new Error("not a numer");
+        }
     } catch (e) {
         error(e);
         ctx.reply("not a number");
