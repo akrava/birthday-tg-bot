@@ -17,8 +17,8 @@ export async function FindUserById(tgId: IUser["telegramID"]) {
         .then((data: IUser) => data || false).catch((e: Error) => error(e));
 }
 
-export async function SetChatsId(tgId: IUser["telegramID"], chatsID: IUser["chatsId"]) {
-    return User.findOneAndUpdate({ telegramID: tgId }, { $set: { chatsID } }, { new: true, upsert: true })
+export async function SetChatsId(tgId: IUser["telegramID"], chatsId: IUser["chatsId"]) {
+    return User.findOneAndUpdate({ telegramID: tgId }, { $set: { chatsId } }, { upsert: true })
         .then(() => true).catch((e) => (error(e), false));
 }
 

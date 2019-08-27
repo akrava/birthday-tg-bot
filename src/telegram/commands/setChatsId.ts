@@ -32,9 +32,8 @@ const setChatsId: Middleware<ContextMessageUpdate> = async function(ctx) {
         let chat;
         try {
             chat = await bot.telegram.getChat(x);
-            console.log(chat);
         } catch (e) {
-            console.log(e);
+            console.log("FALSE");
             return false;
         }
         if (chat.type !== "private") {
