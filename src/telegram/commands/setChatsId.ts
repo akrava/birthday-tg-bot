@@ -29,7 +29,7 @@ const setChatsId: Middleware<ContextMessageUpdate> = async function(ctx) {
     }
     const botID = (await bot.telegram.getMe()).id;
     const chats = chatsId.filter(async (x) => {
-        return false;
+        return true;
         // let chat;
         // try {
         //     chat = await bot.telegram.getChat(x);
