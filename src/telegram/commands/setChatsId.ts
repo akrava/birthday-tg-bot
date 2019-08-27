@@ -34,14 +34,17 @@ const setChatsId: Middleware<ContextMessageUpdate> = async function(ctx) {
             chat = await bot.telegram.getChat(x);
             console.log(chat);
         } catch (e) {
+            console.log(e);
             return false;
         }
         if (chat.type !== "private") {
             const admins = await bot.telegram.getChatAdministrators(x);
             const isUserAdmin = admins.some((y) => y.user.id === user.telegramID);
             const isBotAdmin = admins.some((y) => y.user.id === botID);
+            console.log(isBotAdmin && isUserAdmin ? "TRUE" : "FALSE");
             return isBotAdmin && isUserAdmin;
         } else {
+            console.log("TRUE");
             return true;
         }
     });

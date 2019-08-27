@@ -18,8 +18,7 @@ export async function FindUserById(tgId: IUser["telegramID"]) {
 }
 
 export async function SetChatsId(tgId: IUser["telegramID"], chatsID: IUser["chatsId"]) {
-    console.log("--> chats", chatsID);
-    return User.findOneAndUpdate({ telegramID: tgId }, { $set: { chatsID } })
+    return User.findOneAndUpdate({ telegramID: tgId }, { $set: { chatsID } }, { upsert: true })
         .then(() => true).catch((e) => (error(e), false));
 }
 
