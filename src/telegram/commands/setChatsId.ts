@@ -28,10 +28,11 @@ const setChatsId: Middleware<ContextMessageUpdate> = async function(ctx) {
         return;
     }
     const botID = (await bot.telegram.getMe()).id;
-    chatsId = chatsId.filter(async (x) => {
+    const chats = chatsId.filter(async (x) => {
         let chat;
         try {
             chat = await bot.telegram.getChat(x);
+            console.log(chat);
         } catch (e) {
             return false;
         }
@@ -44,8 +45,8 @@ const setChatsId: Middleware<ContextMessageUpdate> = async function(ctx) {
             return true;
         }
     });
-    if ((await SetChatsIdController(user.telegramID, chatsId))) {
-        ctx.reply(chatsId.reduce((prev, cur) => (prev.toString() + cur.toString() + "\n"), ""));
+    if ((await SetChatsIdController(user.telegramID, chats))) {
+        ctx.reply(chats.reduce((prev, cur) => (prev.toString() + cur.toString() + "\n"), ""));
         ctx.reply("successfully");
     } else {
         ctx.reply("error ocurred");
