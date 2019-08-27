@@ -49,7 +49,6 @@ const setChatsId: Middleware<ContextMessageUpdate> = async function(ctx) {
     }
     if ((await SetChatsIdController(user.telegramID, chats))) {
         ctx.reply(chats.reduce((prev, cur) => (prev.toString() + cur.toString() + "\n"), ""));
-        ctx.reply("successfully");
     } else {
         ctx.reply("error ocurred");
     }
