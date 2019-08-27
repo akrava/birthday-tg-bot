@@ -1,7 +1,7 @@
 export function isBirthdayTody(d1: Date) {
     const d2 = new Date();
-    return d1.getUTCDate() === d2.getUTCDate() &&
-        d1.getUTCMonth() === d2.getUTCMonth();
+    return d1.getDate() === d2.getDate() &&
+        d1.getMonth() === d2.getMonth();
 }
 
 export function howManyYears(d1: Date) {

@@ -16,5 +16,10 @@ export function info(what: string) {
 }
 
 function log(type: string, what: string) {
-    return `[${new Date().toISOString()}]: ${type}: ${what}`;
+    const date = new Date();
+    const DD = date.getDate();
+    const MM = date.getMonth() + 1;
+    const YYYY = date.getFullYear();
+    const time = date.toLocaleTimeString();
+    return `[${DD}.${MM}.${YYYY} ${time}.]: ${type}: ${what}`;
 }
