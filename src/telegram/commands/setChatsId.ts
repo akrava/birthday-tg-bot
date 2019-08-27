@@ -29,23 +29,24 @@ const setChatsId: Middleware<ContextMessageUpdate> = async function(ctx) {
     }
     const botID = (await bot.telegram.getMe()).id;
     const chats = chatsId.filter(async (x) => {
-        let chat;
-        try {
-            chat = await bot.telegram.getChat(x);
-        } catch (e) {
-            console.log("FALSE");
-            return false;
-        }
-        if (chat.type !== "private") {
-            const admins = await bot.telegram.getChatAdministrators(x);
-            const isUserAdmin = admins.some((y) => y.user.id === user.telegramID);
-            const isBotAdmin = admins.some((y) => y.user.id === botID);
-            console.log(isBotAdmin && isUserAdmin ? "TRUE" : "FALSE");
-            return isBotAdmin && isUserAdmin;
-        } else {
-            console.log("TRUE");
-            return true;
-        }
+        return false;
+        // let chat;
+        // try {
+        //     chat = await bot.telegram.getChat(x);
+        // } catch (e) {
+        //     console.log("FALSE");
+        //     return false;
+        // }
+        // if (chat.type !== "private") {
+        //     const admins = await bot.telegram.getChatAdministrators(x);
+        //     const isUserAdmin = admins.some((y) => y.user.id === user.telegramID);
+        //     const isBotAdmin = admins.some((y) => y.user.id === botID);
+        //     console.log(isBotAdmin && isUserAdmin ? "TRUE" : "FALSE");
+        //     return isBotAdmin && isUserAdmin;
+        // } else {
+        //     console.log("TRUE");
+        //     return true;
+        // }
     });
     if ((await SetChatsIdController(user.telegramID, chats))) {
         ctx.reply(chats.reduce((prev, cur) => (prev.toString() + cur.toString() + "\n"), ""));
