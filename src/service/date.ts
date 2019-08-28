@@ -6,7 +6,7 @@ export function isBirthdayTody(d1: Date) {
 
 export function howManyYears(d1: Date) {
     const d2 = new Date();
-    return d2.getUTCFullYear() - d1.getUTCFullYear();
+    return d2.getFullYear() - d1.getFullYear();
 }
 
 export function toFormatedString(date: Date) {

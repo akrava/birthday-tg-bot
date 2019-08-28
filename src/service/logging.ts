@@ -21,5 +21,5 @@ function log(type: string, what: string) {
     const MM = date.getMonth() + 1;
     const YYYY = date.getFullYear();
     const time = date.toLocaleTimeString();
-    return `[${DD}.${MM}.${YYYY} ${time}.]: ${type}: ${what}`;
+    return `[${DD}.${MM}.${YYYY} ${time}]: ${type}: ${what}`;
 }
