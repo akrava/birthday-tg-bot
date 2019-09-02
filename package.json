@@ -4,7 +4,7 @@
     "description": "",
     "main": "src/index.ts",
     "scripts": {
-        "build-server": "tsc && ef-tspm",
+        "build-server": "tsc && tscpaths -p tsconfig.json -s ./src -o ./build",
         "build": "npm run clean && npm run build-server",
         "clean": "rm -rf build",
         "heroku-postbuild": "npm run build",
@@ -13,13 +13,13 @@
     "author": "akrava",
     "license": "MIT",
     "devDependencies": {
-        "@ef-carbon/tspm": "^2.2.5",
         "@types/dotenv": "^6.1.1",
         "@types/express": "^4.17.1",
         "@types/moment": "^2.13.0",
-        "@types/mongoose": "^5.5.15",
+        "@types/mongoose": "^5.5.16",
+        "tscpaths": "0.0.9",
         "tslint": "^5.19.0",
-        "typescript": "^3.5.3"
+        "typescript": "^3.6.2"
     },
     "dependencies": {
         "dotenv": "^8.1.0",
