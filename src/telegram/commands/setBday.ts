@@ -21,12 +21,12 @@ const setBday: Middleware<ContextMessageUpdate> = async function(ctx) {
     lines.splice(0, 1);
     const bdays = [];
     for (const line of lines) {
-        const data = line.match(/\S+/g) || [];
+        const data = line.match(/[^\s"']+|"([^"]*)"|'([^']*)'/g) || [];
         if (data.length !== 2) {
             ctx.reply("two params expected");
             continue;
         }
-        const name = data[0];
+        const name = data[0].replace(/^['"]+|['"]+$/g, "");
         moment.locale("uk");
         const date = moment(data[1], "DD.MM.YY");
         if (!date.isValid()) {

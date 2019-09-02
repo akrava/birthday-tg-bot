@@ -16,7 +16,8 @@ const help: Middleware<ContextMessageUpdate> = async function(ctx) {
         "/set_chats\n" +
         "xxxx xxxx xxxx xxxx\n" +
         "***\n" +
-        "Chats id you can get here: @userinfobot"
+        "Chats id you can get here: @userinfobot\n" +
+        "/get_id to get id of group chat"
     );
 };
 
