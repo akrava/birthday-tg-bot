@@ -1,10 +1,10 @@
 import { CreateBirthday, DeleteBirthdayById } from "@controller/birthday";
-import { ContextMessageUpdate, Middleware } from "telegraf";
+import { Context, Middleware } from "telegraf";
 import { checkUser } from "@telegram/common";
 import { toFormatedString } from "@service/date";
 import moment from "moment";
 
-const setBday: Middleware<ContextMessageUpdate> = async function(ctx) {
+const setBday: Middleware<Context> = async function(ctx) {
     const user = await checkUser(ctx);
     if (user === false) {
         return;
