@@ -23,8 +23,9 @@ app.get(process.env.CRON_PATH, async (_req, res) => {
             error(new Error("Couldn't fetch user"));
             continue;
         }
+        const greetingMessage = await greetings(bday.name, howManyYears(bday.birthday));
         user.chatsId.forEach((chatId) => {
-            bot.telegram.sendMessage(chatId, greetings(bday.name, howManyYears(bday.birthday)));
+            bot.telegram.sendMessage(chatId, greetingMessage);
         });
     }
     info("cron executed");

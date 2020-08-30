@@ -22,8 +22,12 @@
         "typescript": "^3.9.7"
     },
     "dependencies": {
+        "@types/cheerio": "^0.22.21",
+        "@types/got": "^9.6.11",
+        "cheerio": "^1.0.0-rc.3",
         "dotenv": "^8.2.0",
         "express": "^4.17.1",
+        "got": "^11.5.2",
         "moment": "^2.27.0",
         "mongoose": "^5.10.0",
         "telegraf": "^3.38.0"
